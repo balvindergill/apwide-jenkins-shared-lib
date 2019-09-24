@@ -3,8 +3,8 @@
 pipeline {
     agent any
     environment {
-//        APW_JIRA_BASE_URL = 'http://mycompany.com/jira' // these variables can be defined at different level: jenkins global properties, pipeline level, stage level
-//        APW_JIRA_CREDENTIALS_ID = 'jira-credentials'
+        APW_JIRA_BASE_URL = 'http://localhost:8080' // these variables can be defined at different level: jenkins global properties, pipeline level, stage level
+        APW_JIRA_CREDENTIALS_ID = 'jira-credentials'
         APW_APPLICATION = 'eCommerce'
     }
     parameters {
@@ -24,7 +24,7 @@ pipeline {
             }
             environment {
                 APW_CATEGORY = 'Dev'
-                APW_ENVIRONMENT_ID = '6'
+                APW_ENVIRONMENT_ID = '47'
                 ENV_URL = 'http://mycompany.com:8080'
                 ENV_OS = 'Windows'
                 ENV_OWNER = 'info@apwide.com'
@@ -55,7 +55,7 @@ pipeline {
             }
             environment {
                 APW_CATEGORY = 'Demo'
-                APW_ENVIRONMENT_ID = '7'
+                APW_ENVIRONMENT_ID = '6'
                 ENV_URL = 'http://mycompany.com:9000'
                 ENV_OS = 'Ubuntu'
                 ENV_OWNER = 'support@apwide.com'
