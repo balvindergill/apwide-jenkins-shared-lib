@@ -3,7 +3,7 @@
 pipeline {
     agent any
     environment {
-        APW_JIRA_BASE_URL = 'http://localhost:8080' // these variables can be defined at different level: jenkins global properties, pipeline level, stage level
+        APW_JIRA_BASE_URL = 'http://localhost:8100' // these variables can be defined at different level: jenkins global properties, pipeline level, stage level
         APW_JIRA_CREDENTIALS_ID = 'jira-credentials'
         APW_APPLICATION = 'eCommerce'
     }
