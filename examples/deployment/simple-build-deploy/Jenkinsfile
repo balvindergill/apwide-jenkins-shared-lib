@@ -8,7 +8,7 @@ pipeline {
         APW_APPLICATION = 'eCommerce'
     }
     parameters {
-        choice(name: 'PROMOTE_TO_ENV', choices: ['Dev', 'Demo', PreProd], description: 'Should the output be promoted to an environment ?')
+        choice(name: 'PROMOTE_TO_ENV', choices: ['Dev', 'Demo', 'PreProd'], description: 'Should the output be promoted to an environment ?')
     }
     stages {
         stage('Build & Test') { //
