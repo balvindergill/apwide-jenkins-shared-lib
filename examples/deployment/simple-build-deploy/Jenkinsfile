@@ -55,7 +55,7 @@ pipeline {
             }
             environment {
                 APW_CATEGORY = 'Demo'
-                APW_ENVIRONMENT_ID = '2'
+                // APW_ENVIRONMENT_ID = '2'
                 ENV_URL = 'http://mycompany.com:9000'
                 ENV_OS = 'Ubuntu'
                 ENV_OWNER = 'support@apwide.com'
