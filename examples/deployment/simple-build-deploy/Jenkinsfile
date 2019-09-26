@@ -8,7 +8,7 @@ pipeline {
         APW_APPLICATION = 'eCommerce'
     }
     parameters {
-        choice(name: 'PROMOTE_TO_ENV', choices: ['Dev', 'Demo'], description: 'Should the output be promoted to an environment ?')
+        choice(name: 'PROMOTE_TO_ENV', choices: ['Dev', 'Demo', PreProd], description: 'Should the output be promoted to an environment ?')
     }
     stages {
         stage('Build & Test') { //
@@ -60,6 +60,36 @@ pipeline {
                 ENV_OS = 'Ubuntu'
                 ENV_OWNER = 'support@apwide.com'
                 ENV_DATABASE = 'Oracle'
+            }
+            steps {
+                apwSetEnvironmentStatus status:'Deploy' // APW_APPLICATION and APW_CATEGORY defined at stage level, so, specific to these steps execution
+
+                sh "sleep 5s" // replace this step with your own deployment procedure
+
+                apwUpdateEnvironment body:[
+                        url: env.ENV_URL,
+                        attributes: [
+                                OS: env.ENV_OS,
+                                Owner: env.ENV_OWNER,
+                                Database: env.ENV_DATABASE
+                        ]
+                ]
+
+                apwSetDeployedVersion version:currentBuild.number
+                apwSetEnvironmentStatus status:'Up'
+            }
+        }
+        stage('Deploy on PreProd') {
+            when {
+                equals expected: 'PreProd', actual: params.PROMOTE_TO_ENV
+            }
+            environment {
+                APW_CATEGORY = 'PreProd'
+                // APW_ENVIRONMENT_ID = '2'
+                ENV_URL = 'http://mycompany.com:9090'
+                ENV_OS = 'Centos'
+                ENV_OWNER = 'support@apwide.com'
+                ENV_DATABASE = 'MySQL'
             }
             steps {
                 apwSetEnvironmentStatus status:'Deploy' // APW_APPLICATION and APW_CATEGORY defined at stage level, so, specific to these steps execution
