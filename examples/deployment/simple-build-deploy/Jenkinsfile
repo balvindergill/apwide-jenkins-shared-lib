@@ -29,7 +29,6 @@ pipeline {
                 ENV_OS = 'Windows'
                 ENV_OWNER = 'info@apwide.com'
                 ENV_DATABASE = 'Oracle'
-                ENV_CLOUD = 'Amazon'
             }
             steps {
                 apwSetEnvironmentStatus status:'Deploy' // update status change to 'Deploy' for environment identified by APW_APPLICATION and APW_CATEGORY
@@ -42,7 +41,6 @@ pipeline {
                                 OS: env.ENV_OS,
                                 Owner: env.ENV_OWNER,
                                 Database: env.ENV_DATABASE
-                                Cloud: env.ENV_CLOUD
                         ]
                 ] // update environment information with data we can collect in jenkins for environment identified by APW_ENVIRONMENT_ID
 
